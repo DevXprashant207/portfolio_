@@ -94,6 +94,17 @@ function Row({ p }: { p: Project }) {
           )}
           <p className="t-lead mt-5">{p.summary}</p>
 
+          {/* the screenshot is the argument — on mobile it should not be behind a tap */}
+          {!open && p.shots?.[0] && (
+            <img
+              src={p.shots[0].src}
+              alt={`${p.title} — ${p.shots[0].caption}`}
+              loading="lazy"
+              decoding="async"
+              className="mt-6 block w-full border border-line lg:hidden"
+            />
+          )}
+
           <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-3">
             <button
               type="button"

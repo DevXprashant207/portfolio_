@@ -10,7 +10,10 @@ function Line({ text, delay }: { text: string; delay: number }) {
   return (
     <span className="block overflow-hidden pb-[0.08em]">
       <span className="anim-line" style={{ animationDelay: `${delay}s` }}>
-        {text}
+        {/* the lit copy is a ::after from data-text, so the headline is not duplicated in the DOM */}
+        <span className="spot-host" data-text={text}>
+          {text}
+        </span>
       </span>
     </span>
   )

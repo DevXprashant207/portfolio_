@@ -57,13 +57,20 @@ export default function Services() {
           lead="Scoped as outcomes, not as a technology list. If your problem sits between two of these, that is usually the interesting project."
         />
 
-        <div className="grid lg:grid-cols-3">
+        {/* phone: swipeable, one card at a time. tablet up: the hairline grid. */}
+        <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-0 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
           {services.map((s, i) => (
-            <Reveal key={s.n} delay={(i % 3) * 0.06} className="lg:[&:nth-child(3n+2)]:border-x lg:[&:nth-child(3n+2)]:border-line">
+            <Reveal
+              key={s.n}
+              delay={(i % 3) * 0.06}
+              className="w-[80%] shrink-0 snap-start border border-line sm:w-auto sm:border-0 sm:border-t sm:border-line lg:[&:nth-child(3n+2)]:border-x lg:[&:nth-child(3n+2)]:border-line"
+            >
               <Tile s={s} />
             </Reveal>
           ))}
         </div>
+
+        <p className="eyebrow mt-4 sm:hidden">Swipe for all six →</p>
       </div>
     </section>
   )

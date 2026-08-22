@@ -10,7 +10,9 @@ export default function FinalCta() {
             id="final-cta"
             className="t-hero font-display max-w-[13ch] text-balance"
           >
-            Let’s build something <span className="text-muted">worth shipping.</span>
+            <span className="spot-host" data-text="Let’s build something worth shipping.">
+              Let’s build something <span className="text-muted">worth shipping.</span>
+            </span>
           </h2>
         </Reveal>
         <Reveal delay={0.08}>

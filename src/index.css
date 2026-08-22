@@ -225,3 +225,49 @@
     }
   }
 }
+
+/**
+ * Cursor-reactive headline.
+ *
+ * A duplicate of the heading is layered over the real one and clipped to a warm
+ * radial gradient anchored to the cursor. `background-attachment: fixed` makes the
+ * gradient use viewport coordinates, so the --px/--py vars from PointerFX drive it
+ * with no per-element JS.
+ *
+ * The overlay is aria-hidden and sits on top of fully readable text, so if a
+ * browser cannot clip a background to text it simply never renders — the heading
+ * underneath is untouched. Desktop only; a phone has no cursor to follow.
+ */
+@layer utilities {
+  .spot-host {
+    position: relative;
+    display: inline-block;
+  }
+
+  .spot-host::after {
+    display: none;
+  }
+
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    @media (min-width: 768px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+      .spot-host::after {
+        content: attr(data-text);
+        display: block;
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        white-space: pre;
+        background-image: radial-gradient(
+          320px circle at var(--px) var(--py),
+          rgba(255, 255, 255, 0.95),
+          rgba(224, 169, 109, 0.5) 40%,
+          transparent 62%
+        );
+        background-attachment: fixed;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+    }
+  }
+}

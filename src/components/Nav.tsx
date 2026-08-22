@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { nav } from '../data/site'
+import { nav, contact } from '../data/site'
+import { WhatsAppMark, whatsappHref } from './WhatsAppLink'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -91,16 +92,16 @@ export default function Nav() {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="fixed inset-0 z-40 bg-ink pt-[68px] md:hidden"
+        className="fixed inset-0 z-[46] overflow-y-auto bg-ink pt-[68px] md:hidden"
       >
-        <div className="shell flex h-full flex-col justify-between py-10">
+        <div className="shell flex min-h-full flex-col justify-between gap-8 py-8">
           <ul>
             {nav.map((item, i) => (
               <li key={item.href} className="border-b border-line">
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-baseline gap-4 py-5 font-display text-3xl tracking-[-0.03em]"
+                  className="flex items-baseline gap-4 py-4 font-display text-[1.75rem] tracking-[-0.03em]"
                 >
                   <span className="num text-[11px] text-muted">0{i + 1}</span>
                   {item.label}
@@ -108,13 +109,66 @@ export default function Nav() {
               </li>
             ))}
           </ul>
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="flex h-14 items-center justify-center rounded-[3px] bg-accent text-[14px] font-medium text-ink"
-          >
-            Start a project
-          </a>
+          <div>
+            <div className="mb-5 flex items-center gap-2.5 text-[13px] text-bone">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+              </span>
+              {contact.availability}
+            </div>
+
+            <div className="flex gap-2.5">
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="flex h-13 flex-1 items-center justify-center rounded-[3px] bg-accent py-4 text-[14px] font-medium text-ink"
+              >
+                Start a project
+              </a>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Message on WhatsApp"
+                className="flex w-14 shrink-0 items-center justify-center rounded-[3px] border border-line-2 text-bone"
+              >
+                <WhatsAppMark className="h-5 w-5" />
+              </a>
+            </div>
+
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4">
+              <a href={`mailto:${contact.email}`} className="text-[13px] text-muted">
+                {contact.email}
+              </a>
+              <div className="flex gap-5">
+                <a
+                  href={contact.github}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-[13px] text-muted"
+                >
+                  GitHub
+                </a>
+                <a
+                  href={contact.linkedin}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-[13px] text-muted"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href={contact.x}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-[13px] text-muted"
+                >
+                  X
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

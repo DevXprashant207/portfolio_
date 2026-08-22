@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import portrait from '../assets/portrait.png'
+import portrait from '../assets/portrait.jpg'
 import { contact } from '../data/site'
 
 const row = 'flex items-baseline justify-between gap-4 border-t border-line py-2.5'
