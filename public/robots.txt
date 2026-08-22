@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prashantthakur.dev/sitemap.xml
