@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { WhatsAppMark, whatsappHref } from './WhatsAppLink'
 
 /** On phones the nav CTA is behind a menu, so the ask needs to stay on screen. */
 export default function MobileCta() {
@@ -25,13 +26,25 @@ export default function MobileCta() {
       }`}
       style={{ paddingBottom: 'max(12px, env(safe-area-inset-bottom))' }}
     >
-      <a
-        href="#contact"
-        className="flex h-12 items-center justify-center gap-2 rounded-[3px] bg-accent text-[14px] font-medium text-ink"
-        tabIndex={show ? 0 : -1}
-      >
-        Start a project <span aria-hidden>→</span>
-      </a>
+      <div className="flex gap-2.5">
+        <a
+          href="#contact"
+          className="flex h-12 flex-1 items-center justify-center gap-2 rounded-[3px] bg-accent text-[14px] font-medium text-ink"
+          tabIndex={show ? 0 : -1}
+        >
+          Start a project <span aria-hidden>→</span>
+        </a>
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noreferrer noopener"
+          aria-label="Message on WhatsApp"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[3px] border border-line-2 text-bone"
+          tabIndex={show ? 0 : -1}
+        >
+          <WhatsAppMark className="h-5 w-5" />
+        </a>
+      </div>
     </div>
   )
 }

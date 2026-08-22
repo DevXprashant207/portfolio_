@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Reveal from '../components/Reveal'
 import { contact, projectTypes, budgets } from '../data/site'
+import { WhatsAppMark, whatsappHref } from '../components/WhatsAppLink'
 
 const field =
   'w-full bg-transparent border-b border-line px-0 py-3.5 text-[15px] text-bone placeholder:text-muted/60 focus:border-accent focus:outline-none transition-colors duration-300'
@@ -92,8 +93,35 @@ export default function Contact() {
               </p>
             </Reveal>
 
+            {/* A form is a commitment. WhatsApp is how most of this market actually opens. */}
+            <Reveal delay={0.12}>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noreferrer noopener"
+                data-cursor="message"
+                className="group mt-10 flex items-center justify-between gap-4 border border-line-2 p-5 transition-colors duration-300 hover:border-accent hover:bg-white/[0.02]"
+              >
+                <span className="flex items-center gap-3.5">
+                  <WhatsAppMark className="h-5 w-5 text-accent" />
+                  <span>
+                    <span className="block text-[15px] text-bone">Message me on WhatsApp</span>
+                    <span className="eyebrow mt-1 block">
+                      Faster than the form · {contact.phone}
+                    </span>
+                  </span>
+                </span>
+                <span
+                  aria-hidden
+                  className="text-accent transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  →
+                </span>
+              </a>
+            </Reveal>
+
             <Reveal delay={0.15}>
-              <dl className="mt-12 space-y-5">
+              <dl className="mt-10 space-y-5">
                 <div className="border-t border-line pt-4">
                   <dt className="eyebrow mb-1.5">Email</dt>
                   <dd>
@@ -106,13 +134,22 @@ export default function Contact() {
                   </dd>
                 </div>
                 <div className="border-t border-line pt-4">
-                  <dt className="eyebrow mb-1.5">Phone</dt>
-                  <dd>
+                  <dt className="eyebrow mb-1.5">Phone &amp; WhatsApp</dt>
+                  <dd className="flex flex-wrap items-center gap-x-5 gap-y-1">
                     <a
                       href={`tel:${contact.phoneHref}`}
                       className="text-[15px] text-bone transition-colors hover:text-accent"
                     >
                       {contact.phone}
+                    </a>
+                    <a
+                      href={whatsappHref}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center gap-2 text-[15px] text-muted transition-colors hover:text-accent"
+                    >
+                      <WhatsAppMark className="h-4 w-4" />
+                      WhatsApp
                     </a>
                   </dd>
                 </div>
@@ -134,6 +171,14 @@ export default function Contact() {
                       className="text-[15px] text-bone transition-colors hover:text-accent"
                     >
                       LinkedIn
+                    </a>
+                    <a
+                      href={contact.x}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="text-[15px] text-bone transition-colors hover:text-accent"
+                    >
+                      X
                     </a>
                   </dd>
                 </div>

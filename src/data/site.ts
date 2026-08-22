@@ -10,6 +10,10 @@ export const contact = {
   email: 'prashant.thakur.work@gmail.com',
   phone: '+91 94517 40121',
   phoneHref: '+919451740121',
+  whatsapp: 'https://wa.me/919451740121',
+  /** Prefilled so the first message already says what it is about. */
+  whatsappText:
+    'Hi Prashant — I found your site. I have a project I would like to talk about:',
   /**
    * FormSubmit relays the contact form to `email`. No account, no API key — but the
    * FIRST submission triggers a one-time confirmation email that must be clicked
@@ -28,7 +32,6 @@ export const nav = [
   { label: 'Work', href: '#work' },
   { label: 'Services', href: '#services' },
   { label: 'Engineering', href: '#engineering' },
-  { label: 'Approach', href: '#approach' },
   { label: 'About', href: '#about' },
   { label: 'Pricing', href: '#working' },
 ]
@@ -276,10 +279,11 @@ export const projectTypes = [
 ]
 
 export const budgets = [
-  'Under $5,000',
-  '$5,000 – $10,000',
-  '$10,000 – $20,000',
-  '$20,000+',
+  'Under ₹20,000 · under $250',
+  '₹20,000 – ₹50,000 · $250 – $600',
+  '₹50,000 – ₹1,00,000 · $600 – $1,200',
+  '₹1,00,000 – ₹2,00,000 · $1,200 – $2,400',
+  '₹2,00,000+ · $2,400+',
   'Need guidance',
 ]
 
@@ -309,7 +313,11 @@ export const testimonials: Testimonial[] = [
   },
 ]
 
-/** Commercial shape. CONFIRM THESE NUMBERS before publishing — see README. */
+/**
+ * Commercial shape. CONFIRM THESE NUMBERS before publishing — see README.
+ * Both currencies are shown because the audience is split between Indian and
+ * international clients; INR figures are rounded equivalents, not a fixed rate.
+ */
 export const engagements = [
   {
     n: '01',
@@ -321,7 +329,7 @@ export const engagements = [
     n: '02',
     title: 'Fixed-scope build',
     meta: 'Typically 3–10 weeks · Billed per milestone',
-    body: 'The usual engagement. Scope agreed up front, delivered in reviewable milestones, deployed and handed over. Most projects land between $5,000 and $20,000 depending on surface area and integrations.',
+    body: 'The usual engagement. Scope agreed up front, delivered in reviewable milestones, deployed and handed over. Most projects land between ₹20,000 and ₹2,00,000 — roughly $250 to $2,400 — depending on surface area and integrations.',
   },
   {
     n: '03',
@@ -347,6 +355,10 @@ export const faqs = [
   {
     q: 'Do you sign NDAs?',
     a: 'Yes, before any detail is shared. Send yours, or I can work to a standard mutual one.',
+  },
+  {
+    q: 'Which currency do you bill in?',
+    a: 'Indian clients are billed in rupees, international clients in dollars — whichever removes the friction on your side. Figures on this page are shown in both because the work is the same either way.',
   },
   {
     q: 'Where are you, and does that matter?',

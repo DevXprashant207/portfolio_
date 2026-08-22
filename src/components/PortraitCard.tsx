@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useReducedMotion } from 'framer-motion'
 import portrait from '../assets/portrait.png'
 import { contact } from '../data/site'
 
@@ -14,7 +13,6 @@ const row = 'flex items-baseline justify-between gap-4 border-t border-line py-2
 export default function PortraitCard() {
   const [flipped, setFlipped] = useState(false)
   const [hovered, setHovered] = useState(false)
-  const reduced = useReducedMotion()
 
   const showBack = flipped || hovered
 
@@ -39,7 +37,7 @@ export default function PortraitCard() {
         <div
           className={`relative transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] [transform-style:preserve-3d] ${
             showBack ? '[transform:rotateY(180deg)]' : ''
-          } ${reduced ? 'transition-none' : ''}`}
+          }`}
         >
           {/* ---- front ---- */}
           <figure className="border border-line bg-white/[0.015] p-6 [backface-visibility:hidden]">

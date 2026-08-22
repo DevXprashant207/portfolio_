@@ -159,3 +159,62 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Entrance animations for the hero — CSS instead of a 75KB animation runtime. */
+@layer utilities {
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* the headline masks each line and slides it up from below */
+  @keyframes line-up {
+    from {
+      transform: translateY(105%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .anim-rise {
+    opacity: 0;
+    animation: rise-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .anim-fade {
+    opacity: 0;
+    animation: fade-in 0.8s ease forwards;
+  }
+
+  .anim-line {
+    display: block;
+    animation: line-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Reduced motion: show the finished state, skip the travel. */
+  @media (prefers-reduced-motion: reduce) {
+    .anim-rise,
+    .anim-fade,
+    .anim-line {
+      opacity: 1;
+      transform: none;
+      animation: none !important;
+    }
+  }
+}

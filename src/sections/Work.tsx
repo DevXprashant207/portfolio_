@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import SectionHeading from '../components/SectionHeading'
 import Reveal from '../components/Reveal'
 import ProjectVisual from '../components/ProjectVisual'
@@ -71,9 +70,8 @@ function Detail({ p }: { p: Project }) {
   )
 }
 
-function Row({ p, defaultOpen }: { p: Project; defaultOpen: boolean }) {
-  const [open, setOpen] = useState(defaultOpen)
-  const reduced = useReducedMotion()
+function Row({ p }: { p: Project }) {
+  const [open, setOpen] = useState(false)
 
   return (
     <article className="border-t border-line py-10 lg:py-14">
@@ -127,20 +125,14 @@ function Row({ p, defaultOpen }: { p: Project; defaultOpen: boolean }) {
             )}
           </div>
 
-          <AnimatePresence initial={false}>
-            {open && (
-              <motion.div
-                key="detail"
-                initial={reduced ? false : { height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={reduced ? undefined : { height: 0, opacity: 0 }}
-                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden"
-              >
-                <Detail p={p} />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* grid-rows animates to auto height with nothing to measure */}
+          <div
+            className={`grid transition-[grid-template-rows,opacity] duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+            }`}
+          >
+            <div className="overflow-hidden">{open && <Detail p={p} />}</div>
+          </div>
         </div>
       </div>
     </article>
@@ -158,9 +150,9 @@ export default function Work() {
           lead="All three are live and clickable. Anyone can list features — what is worth reading is why a system is shaped the way it is, so here is the reasoning, not a gallery."
         />
         <div>
-          {projects.map((p, i) => (
+          {projects.map((p) => (
             <Reveal key={p.slug}>
-              <Row p={p} defaultOpen={i === 0} />
+              <Row p={p} />
             </Reveal>
           ))}
         </div>

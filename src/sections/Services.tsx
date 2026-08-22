@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import { useReducedMotion } from 'framer-motion'
 import SectionHeading from '../components/SectionHeading'
 import Reveal from '../components/Reveal'
 import { services } from '../data/site'
@@ -7,11 +6,15 @@ import { services } from '../data/site'
 /** Tilt is capped at 2.5deg. Past that it stops reading as depth and starts reading as a gimmick. */
 function Tile({ s }: { s: (typeof services)[number] }) {
   const ref = useRef<HTMLDivElement>(null)
-  const reduced = useReducedMotion()
 
   const onMove = (e: React.MouseEvent) => {
     const el = ref.current
-    if (!el || reduced || !window.matchMedia('(pointer: fine)').matches) return
+    if (
+      !el ||
+      !window.matchMedia('(pointer: fine)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    )
+      return
     const r = el.getBoundingClientRect()
     const dx = (e.clientX - (r.left + r.width / 2)) / r.width
     const dy = (e.clientY - (r.top + r.height / 2)) / r.height

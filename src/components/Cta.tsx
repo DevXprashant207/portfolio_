@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import type { ReactNode } from 'react'
-import { useReducedMotion } from 'framer-motion'
 
 type Props = {
   href: string
@@ -10,6 +9,11 @@ type Props = {
   external?: boolean
   cursor?: string
 }
+
+/** Mouse-only, and never when the visitor asked for less motion. */
+const canMove = () =>
+  window.matchMedia('(pointer: fine)').matches &&
+  !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 /**
  * Magnetic pull is 5px and desktop-only. Enough to feel considered,
@@ -24,11 +28,10 @@ export default function Cta({
   cursor,
 }: Props) {
   const ref = useRef<HTMLAnchorElement>(null)
-  const reduced = useReducedMotion()
 
   const onMove = (e: React.MouseEvent) => {
     const el = ref.current
-    if (!el || reduced || !window.matchMedia('(pointer: fine)').matches) return
+    if (!el || !canMove()) return
     const r = el.getBoundingClientRect()
     const dx = (e.clientX - (r.left + r.width / 2)) / r.width
     const dy = (e.clientY - (r.top + r.height / 2)) / r.height
