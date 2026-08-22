@@ -25,10 +25,11 @@ export default function Hero() {
       {/* single soft vignette — the only gradient on the site */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-70"
+        className="pointer-events-none absolute inset-0 opacity-70 transition-transform duration-300 ease-out"
         style={{
           background:
             'radial-gradient(70% 55% at 72% 42%, rgba(224,169,109,0.07), transparent 70%)',
+          transform: 'translate3d(calc(var(--mx) * -18px), calc(var(--my) * -12px), 0)',
         }}
       />
 
@@ -83,7 +84,10 @@ export default function Hero() {
         </div>
 
         {/* One object in this column, not two: the photo, framed as a plate. */}
-        <div className="lg:col-span-5 lg:justify-self-center">
+        <div
+          className="lg:col-span-5 lg:justify-self-center"
+          style={{ transform: 'translate3d(calc(var(--mx) * 7px), calc(var(--my) * 5px), 0)' }}
+        >
           <PortraitCard />
         </div>
       </div>

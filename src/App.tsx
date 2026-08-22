@@ -1,6 +1,7 @@
 import Nav from './components/Nav'
 import MobileCta from './components/MobileCta'
 import BracketCursor from './components/BracketCursor'
+import PointerFX from './components/PointerFX'
 import ScrollProgress from './components/ScrollProgress'
 import Hero from './sections/Hero'
 import Work from './sections/Work'
@@ -16,6 +17,7 @@ import Footer from './sections/Footer'
 export default function App() {
   return (
     <div className="grain">
+      <PointerFX />
       <ScrollProgress />
       <BracketCursor />
       <Nav />
